@@ -28,6 +28,7 @@
 
 ## Reference
 - [Env Setup](https://gist.github.com/harisibrahimkv/8279101)
+- [Django REST framework doc](https://www.django-rest-framework.org/)
 - [Django and React Tutorial](https://www.youtube.com/watch?v=uZgRbnIsgrA)
 - [Django Rest Framework with React Tutorial](https://wsvincent.com/django-rest-framework-react-tutorial/)
 - [A Complete Beginner's Guide to Django - Part 7](https://simpleisbetterthancomplex.com/series/2017/10/16/a-complete-beginners-guide-to-django-part-7.html)
