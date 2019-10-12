@@ -5,6 +5,12 @@
     - `source venv/bin/activate`
     - `python --version`
 
+    > if run `python manage.py runserver` causes `manage.py` syntax error, do the following:(caused by version control)
+    - add PATH to bash_profile
+        > `vi ~/.bash_profile`
+        > `source ~/.bash_profile`
+        > `export PATH`
+
 ### Database
 - Configure PostgreSQL
     - `brew install postgresql`
