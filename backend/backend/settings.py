@@ -44,8 +44,9 @@ INSTALLED_APPS = [
     'corsheaders',
 ]
 
-MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware',   # for API CRUD oerations
+# replace MIDDLEWARE with MIDDLEWARE_CLASSES
+# because MIDDLEWARE was introduced after django 1.10
+MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -53,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',   # for API CRUD oerations
 ]
 
 ROOT_URLCONF = 'backend.urls'
