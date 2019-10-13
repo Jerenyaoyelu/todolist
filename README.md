@@ -28,6 +28,7 @@
 
 ## Reference
 - [Env Setup](https://gist.github.com/harisibrahimkv/8279101)
+- [Tutorial: Django REST with React (Django 2.0 and a sprinkle of testing)](https://www.valentinog.com/blog/drf/)
 - [Django REST framework doc](https://www.django-rest-framework.org/)
 - [Django and React Tutorial](https://www.youtube.com/watch?v=uZgRbnIsgrA)
 - [Django Rest Framework with React Tutorial](https://wsvincent.com/django-rest-framework-react-tutorial/)
