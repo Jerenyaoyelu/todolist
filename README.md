@@ -27,6 +27,7 @@
 
 
 ## Reference
+### Backend
 - [Env Setup](https://gist.github.com/harisibrahimkv/8279101)
 - [Tutorial: Django REST with React (Django 2.0 and a sprinkle of testing)](https://www.valentinog.com/blog/drf/)
 - [Modern Django — Part 2: REST APIs, Apps, and Django REST Framework](https://medium.com/@djstein/modern-django-part-2-rest-apis-apps-and-django-rest-framework-ea0cac5ab104)
@@ -35,3 +36,7 @@
 - [Django Rest Framework with React Tutorial](https://wsvincent.com/django-rest-framework-react-tutorial/)
 - [Django REST framework--quickstart](https://www.django-rest-framework.org/tutorial/quickstart/)
 - [reactdj](http://srplabs.in/home)
+
+### Frontend
+- [React doc](https://reactjs.org/docs/hello-world.html)
+- 
