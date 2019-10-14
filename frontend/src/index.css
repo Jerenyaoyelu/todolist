@@ -21,6 +21,16 @@ body {
   text-decoration: line-through;
 }
 
+.todoItems {
+  /* padding: 10ex;/ */
+  margin-top: 5ex;
+  margin-bottom: 5ex;
+}
+.doneItems {
+  /* padding: 10ex;/ */
+  margin-top: 5ex;
+  margin-bottom: 5ex;
+}
 .tab-list > span {
   padding: 5px 8px;
   border: 1px solid #282c34;
