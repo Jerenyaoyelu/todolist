@@ -1,29 +1,12 @@
 import React, { Component } from "react";
 import Modal from "./components/Modal";
+import axios from "axios";
 
-// fake test data
-const todoItems = [
-  {
-    id: 1,
-    title: "Go to Market",
-    notes: "Buy ingredients to prepare dinner",
-    created_at: "12/10/2019",
-    completed: true,
-  },
-  {
-    id: 2,
-    title: "Study",
-    notes: "Read Algebra and History textbook for upcoming test",
-    created_at: "12/10/2019",
-    completed: false,
-  },
-];
 class App extends Component {
   constructor(props) {
     super(props);
     // this.handleMouseHover = this.handleMouseHover.bind(this);
     this.state = {
-      modal: false,
       viewCompleted: false,
       activeItem: {
         title: "",
@@ -32,10 +15,20 @@ class App extends Component {
         completed: false,
       },
       // consume api here
-      todoList: todoItems,
+      todoList: [],
       // isHovering: false,
     };
   }
+  componentDidMount() {
+    this.refreshList();
+  }
+  refreshList = () => {
+    axios
+      .get("http://127.0.0.1:8000/api/todos/")
+      .then(res => this.setState({ todoList: res.data }))
+      .catch(err => console.log(err));
+    console.log("tt", this.state.todoList);
+  };
   // to control the Modal's state
   toggle = () => {
     this.setState({ modal: !this.state.modal });
@@ -43,11 +36,21 @@ class App extends Component {
   // handle submission
   handleSubmit = item => {
     this.toggle();
-    alert("save" + JSON.stringify(item));
+    if (item.id) {
+      axios
+        .put(`http://127.0.0.1:8000/api/todos/${item.id}`, item)
+        .then(res => this.refreshList());
+      return;
+    }
+    axios
+      .post("http://127.0.0.1:8000/api/todos/", item)
+      .then(res => this.refreshList());
   };
   // handle deletion
   handleDelete = item => {
-    alert("delete" + JSON.stringify(item));
+    axios
+      .delete(`http://127.0.0.1:8000/api/todos/${item.id}`)
+      .then(res => this.refreshList());
   };
   //create action
   createItem = () => {
@@ -101,10 +104,10 @@ class App extends Component {
   renderItems = () => {
     const { viewCompleted } = this.state;
     const todoItems = this.state.todoList.filter(
-      item => item.completed == false
+      item => item.completed === false
     );
     const doneItems = this.state.todoList.filter(
-      item => item.completed == true
+      item => item.completed === true
     );
     return (
       <div>
