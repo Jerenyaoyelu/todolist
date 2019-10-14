@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import {Button,Modal,ModalHeader,ModalBody,Form,FormGroup,Input,Label} from "reactstrap";
+import {Button,Modal,ModalHeader,ModalFooter,ModalBody,Form,FormGroup,Input,Label} from "reactstrap";
 
 export default class CustomModal extends Component{
     constructor(props){
         super(props);
         this.state = {
-            activeItem: this.props.activeItem
+            activeItem: this.props.activeItem            
             // represents the todo item to be edited
         };
     }
@@ -43,13 +43,22 @@ export default class CustomModal extends Component{
                             />
                         </FormGroup>
                         <FormGroup>
-                            <Label for="description">Description</Label>
+                            <Label for="notes">notes</Label>
                             <Input
                                 type="text"
-                                name="description"
-                                value={this.state.activeItem.description}
+                                name="notes"
+                                value={this.state.activeItem.notes}
                                 onChange={this.handleChange}
-                                placeholder="Add Todo description"
+                                placeholder="Add Todo notes"
+                            />
+                        </FormGroup>
+                        <FormGroup>
+                            <Label for="created_at">created_at</Label>
+                            <Input
+                                type="date"
+                                name="created_at"
+                                checked={this.state.activeItem.created_at}
+                                onChange={this.handleChange}
                             />
                         </FormGroup>
                         <FormGroup>
@@ -68,9 +77,8 @@ export default class CustomModal extends Component{
                 <ModalFooter>
                     <Button 
                         color="success" 
-                        onClick={
-                            ()=>onSave(this.state.activeItem)
-                        }>
+                        onClick={()=>onSave(this.state.activeItem)}
+                        >
                         Save
                     </Button>
                 </ModalFooter>
