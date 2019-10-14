@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Modal from "./components/Modal";
 
 // fake test data
 const todoItems = [
@@ -6,71 +7,172 @@ const todoItems = [
     id: 1,
     title: "Go to Market",
     notes: "Buy ingredients to prepare dinner",
-    completed: true
+    created_at: "12/10/2019",
+    completed: true,
   },
   {
     id: 2,
     title: "Study",
     notes: "Read Algebra and History textbook for upcoming test",
-    completed: false
+    created_at: "12/10/2019",
+    completed: false,
   },
 ];
 class App extends Component {
   constructor(props) {
     super(props);
+    // this.handleMouseHover = this.handleMouseHover.bind(this);
     this.state = {
+      modal: false,
       viewCompleted: false,
-      todoList: todoItems
+      activeItem: {
+        title: "",
+        notes: "",
+        created_at: "",
+        completed: false,
+      },
+      // consume api here
+      todoList: todoItems,
+      // isHovering: false,
     };
   }
+  // to control the Modal's state
+  toggle = () => {
+    this.setState({ modal: !this.state.modal });
+  };
+  // handle submission
+  handleSubmit = item => {
+    this.toggle();
+    alert("save" + JSON.stringify(item));
+  };
+  // handle deletion
+  handleDelete = item => {
+    alert("delete" + JSON.stringify(item));
+  };
+  //create action
+  createItem = () => {
+    const item = {
+      title: "",
+      notes: "",
+      created_at: "",
+      completed: false,
+    };
+    this.setState({ activeItem: item, modal: !this.state.modal });
+  };
+  //modify action
+  editItem = item => {
+    this.setState({ activeItem: item, modal: !this.state.modal });
+  };
+  //display completed todos
   displayCompleted = status => {
     if (status) {
       return this.setState({ viewCompleted: true });
     }
     return this.setState({ viewCompleted: false });
   };
-  renderTabList = () => {
-    return (
-      <div className="my-5 tab-list">
-        <span
-          onClick={() => this.displayCompleted(true)}
-          className={this.state.viewCompleted ? "active" : ""}
-        >
-          complete
-        </span>
-        <span
-          onClick={() => this.displayCompleted(false)}
-          className={this.state.viewCompleted ? "" : "active"}
-        >
-          Incomplete
-        </span>
-      </div>
-    );
-  };
+  // handleMouseHover = () => {
+  //   this.setState(this.toggleHoverState);
+  // };
+
+  // toggleHoverState = state => {
+  //   return {
+  //     isHovering: !state.isHovering,
+  //   };
+  // };
+  // //display different lists of todos based on completed or not
+  // renderTabList = () => {
+  //   return (
+  //     <div className="my-5 tab-list">
+  //       <span
+  //         onClick={() => this.displayCompleted(false)}
+  //         className={this.state.viewCompleted ? "" : "active"}
+  //       >
+  //         ToDo
+  //       </span>
+  //       <span
+  //         onClick={() => this.displayCompleted(true)}
+  //         className={this.state.viewCompleted ? "active" : ""}
+  //       >
+  //         Done
+  //       </span>
+  //     </div>
+  //   );
+  // };
   renderItems = () => {
     const { viewCompleted } = this.state;
-    const newItems = this.state.todoList.filter(
-      item => item.completed == viewCompleted
+    const todoItems = this.state.todoList.filter(
+      item => item.completed == false
     );
-    return newItems.map(item => (
-      <li
-        key={item.id}
-        className="list-group-item d-flex justify-content-between align-items-center"
-      >
-        <span
-          className={`todo-title mr-2 ${
-            this.state.viewCompleted ? "completed-todo" : ""
-          }`}
-          title={item.description}
-        >
-          {item.title}
-        </span>
-        <span>
-          <button className="btn btn-secondary mr-2"> Edit </button>
-          <button className="btn btn-danger">Delete </button>
-        </span>
-      </li>
-    ));
+    const doneItems = this.state.todoList.filter(
+      item => item.completed == true
+    );
+    return (
+      <div>
+        {/* list all of todos */}
+        <div className="todoItems">
+          {todoItems.map(item => (
+            <li
+              key={item.id}
+              className="list-group-item d-flex justify-content-between align-items-center"
+            >
+              <span>
+                {/* displaying place in front of eidt button */}
+                {item.title}
+              </span>
+              <span>
+                <button
+                  onClick={() => this.editItem(item)}
+                  className="btn btn-secondary mr-2"
+                >
+                  Edit
+                </button>
+                <button
+                  onClick={() => this.handleDelete(item)}
+                  className="btn btn-danger"
+                >
+                  Delete
+                </button>
+              </span>
+            </li>
+          ))}
+          <div className="my-4">
+            <button
+              onClick={() => this.createItem()}
+              className="btn btn-primary"
+            >
+              Add task
+            </button>
+          </div>
+        </div>
+
+        <br></br>
+        {/* list all completed todos */}
+        <div className="doneItems">
+          <div>
+            <span className="">Done</span>
+          </div>
+          {doneItems.map(item => (
+            <li
+              key={item.id}
+              className="list-group-item d-flex justify-content-between align-items-center"
+            >
+              <span className="completed-todo" title={item.notes}>
+                {/* displaying place in front of eidt button */}
+                {item.title}
+              </span>
+              <span>
+                <button
+                  onClick={() => this.handleDelete(item)}
+                  className="btn btn-danger"
+                >
+                  Delete
+                </button>
+              </span>
+            </li>
+          ))}
+        </div>
+      </div>
+    );
   };
   render() {
     return (
@@ -79,16 +181,19 @@ class App extends Component {
         <div className="row ">
           <div className="col-md-6 col-sm-10 mx-auto p-0">
             <div className="card p-3">
-              <div className="">
-                <button className="btn btn-primary">Add task</button>
-              </div>
-              {this.renderTabList()}
               <ul className="list-group list-group-flush">
                 {this.renderItems()}
               </ul>
             </div>
           </div>
         </div>
+        {this.state.modal ? (
+          <Modal
+            activeItem={this.state.activeItem}
+            toggle={this.toggle}
+            onSave={this.handleSubmit}
+          />
+        ) : null}
       </main>
     );
   }
