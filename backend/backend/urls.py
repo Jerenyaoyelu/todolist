@@ -17,6 +17,7 @@ from django.contrib import admin
 
 
 urlpatterns = [
+    # redirect to REST endpoint
     url(r'^api/', include('todos.urls')),
     url(r'^admin/', include(admin.site.urls)),
 ]
