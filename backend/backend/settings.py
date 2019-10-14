@@ -83,6 +83,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'todos',
+        'USER': 'luyaoye',
+        'PASSWORD': '1234567',
+        'HOST': 'localhost',
+        'PORT':'5432'
     }
 }
 
@@ -112,5 +116,8 @@ CORS_ORIGIN_WHITELIST = ('localhost:3000/')
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 20
+    'PAGE_SIZE': 20,
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
 }
