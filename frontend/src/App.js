@@ -7,7 +7,8 @@ class App extends Component {
     super(props);
     // this.handleMouseHover = this.handleMouseHover.bind(this);
     this.state = {
-      viewCompleted: false,
+      modal: false,
+      // viewCompleted: false,
       activeItem: {
         title: "",
         notes: "",
@@ -25,9 +26,12 @@ class App extends Component {
   refreshList = () => {
     axios
       .get("http://127.0.0.1:8000/api/todos/")
-      .then(res => this.setState({ todoList: res.data }))
+      .then(function(res) {
+        console.log(res.data.results);
+      })
+      // 'todoList: data' will produce an error, because of failing to retrieve data from API, so data becomes an empty string,
+      //  and because .map() can not work on a string type, it needs to be a list
       .catch(err => console.log(err));
-    console.log("tt", this.state.todoList);
   };
   // to control the Modal's state
   toggle = () => {
@@ -66,43 +70,9 @@ class App extends Component {
   editItem = item => {
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
-  //display completed todos
-  displayCompleted = status => {
-    if (status) {
-      return this.setState({ viewCompleted: true });
-    }
-    return this.setState({ viewCompleted: false });
-  };
-  // handleMouseHover = () => {
-  //   this.setState(this.toggleHoverState);
-  // };
 
-  // toggleHoverState = state => {
-  //   return {
-  //     isHovering: !state.isHovering,
-  //   };
-  // };
-  // //display different lists of todos based on completed or not
-  // renderTabList = () => {
-  //   return (
-  //     <div className="my-5 tab-list">
-  //       <span
-  //         onClick={() => this.displayCompleted(false)}
-  //         className={this.state.viewCompleted ? "" : "active"}
-  //       >
-  //         ToDo
-  //       </span>
-  //       <span
-  //         onClick={() => this.displayCompleted(true)}
-  //         className={this.state.viewCompleted ? "active" : ""}
-  //       >
-  //         Done
-  //       </span>
-  //     </div>
-  //   );
-  // };
   renderItems = () => {
-    const { viewCompleted } = this.state;
+    // const { viewCompleted } = this.state;
     const todoItems = this.state.todoList.filter(
       item => item.completed === false
     );
