@@ -24,10 +24,15 @@ class App extends Component {
     this.refreshList();
   }
   refreshList = () => {
+    //to call this.setState inside of the callback to Api.get().
+    //it has to cache the reference to "this" outside of that API call.
+    //otherwise, TypeError will occur
+    let thisPoniter = this;
     axios
       .get("http://127.0.0.1:8000/api/todos/")
+      // data is successfully retrieved from api, way of updating data to state is wrong
       .then(function(res) {
-        console.log(res.data.results);
+        thisPoniter.setState({ todoList: res.data.results });
       })
       // 'todoList: data' will produce an error, because of failing to retrieve data from API, so data becomes an empty string,
       //  and because .map() can not work on a string type, it needs to be a list
