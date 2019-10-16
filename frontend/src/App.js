@@ -21,9 +21,9 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    this.refreshList();
+    this.Update();
   }
-  refreshList = () => {
+  Update = () => {
     //to call this.setState inside of the callback to Api.get().
     //it has to cache the reference to "this" outside of that API call.
     //otherwise, TypeError will occur
@@ -48,19 +48,29 @@ class App extends Component {
     if (item.id) {
       axios
         .put(`http://127.0.0.1:8000/api/todos/${item.id}`, item)
-        .then(res => this.refreshList());
+        .then(res => this.Update());
       return;
     }
     axios
       .post("http://127.0.0.1:8000/api/todos/", item)
-      .then(res => this.refreshList());
+      .then(res => this.Update());
   };
   // handle deletion
+  // has problems:
+  // did not really delete data in the database, just faking in frontend
   handleDelete = item => {
-    axios
-      .delete(`http://127.0.0.1:8000/api/todos/${item.id}`)
-      .then(res => this.refreshList());
+    axios.delete(`http://127.0.0.1:8000/api/todos/${item.id}`);
+    let todoListCopy = this.state.todoList; // grab a copy of the todo list
+    for (let i = 0; i < todoListCopy.length; i++) {
+      let todo = todoListCopy[i];
+      if (todo.id === item.id) {
+        todoListCopy.splice(i, 1); // delete the item
+        break; // we’re done! break the loop
+      }
+    }
+    this.setState({ todoList: todoListCopy });
   };
+
   //create action
   createItem = () => {
     const item = {
@@ -105,7 +115,7 @@ class App extends Component {
                   Edit
                 </button>
                 <button
-                  onClick={() => this.handleDelete(item)}
+                  onClick={e => this.handleDelete(item)}
                   className="btn btn-danger"
                 >
                   Delete
@@ -118,7 +128,7 @@ class App extends Component {
               onClick={() => this.createItem()}
               className="btn btn-primary"
             >
-              Add task
+              New todos
             </button>
           </div>
         </div>
