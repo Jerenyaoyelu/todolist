@@ -44,6 +44,10 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    # has to place in the top, otherwise 'locked by CORS: preflight does not pass access control check' error will happen
+    'corsheaders.middleware.CorsMiddleware', 
+    'django.middleware.common.CommonMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -52,7 +56,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware', 
 )
 
 ROOT_URLCONF = 'backend.urls'
@@ -112,7 +115,7 @@ STATIC_URL = '/static/'
 
 
 # whitelist localhost:3000 where frontend will be served
-CORS_ORIGIN_WHITELIST = ('localhost:3000/')
+CORS_ORIGIN_WHITELIST = ('http://localhost:3000/')
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
