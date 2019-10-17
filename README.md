@@ -6,6 +6,23 @@
 - Using Django REST framework api to achieve the communication between frontend and backend
 - Deployment is done on AWS EC2
 
+## Completed all functions
+
+- Create a todo
+  ![](https://p1.tr0.n0.cdn.getcloudapp.com/items/2NuAyPQq/增加待办事项.gif?v=e0926612340e9f8161c83caf77cac637)
+- Modify a todo
+  ![](https://p1.tr0.n0.cdn.getcloudapp.com/items/wbue7YQE/编辑待办事项.gif?v=31841b828d88b9aba7f08bafc0cfa8be)
+- Delete a todo
+  ![](https://p1.tr0.n0.cdn.getcloudapp.com/items/qGuzNr6x/删除待办事项.gif?v=8f5affb7ce5bf0d3257a54d105b362af)
+- Tag a done todo
+  ![](https://p1.tr0.n0.cdn.getcloudapp.com/items/QwuQ04oE/标记完成待办事项.gif?v=1331c1c91e28b5310a8ee358083cf41b)
+- Delete a done todo
+  ![](https://p1.tr0.n0.cdn.getcloudapp.com/items/6quDeEp5/删除一个完成事项.gif?v=9e7764a606cd7a06be524229e68fb797)
+- List all todos/done todos
+  ![](https://p1.tr0.n0.cdn.getcloudapp.com/items/2NuAyvZp/列出所有待办%2F完成事项.gif?v=49f092d4246195b40e6cc138ea8378cf)
+- Modify the deadline
+  ![](https://p1.tr0.n0.cdn.getcloudapp.com/items/lluwY6Kj/更改待办事项Deadline.gif?v=74da30a947265bfad7063a5bf85f1b0f)
+
 ## Requirements
 
 - follow the `SETUP.md`

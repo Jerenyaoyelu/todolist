@@ -34,10 +34,13 @@
 ### Frontend
 
 - Open a terminal, `cd` to the todolist directory, run
+
   - `npx create-react-app frontend`
   - to run the react
     - `cd frontend`
     - `npm start`
+
+- `npm install axios`
 
 ### Others
 
