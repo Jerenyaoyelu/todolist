@@ -12,7 +12,7 @@ class App extends Component {
       activeItem: {
         title: "",
         notes: "",
-        created_at: "",
+        due: "",
         completed: false,
       },
       // consume api here
@@ -58,6 +58,7 @@ class App extends Component {
   // handle deletion
   // has problems:
   // did not really delete data in the database, just faking in frontend
+  // problem solved!
   handleDelete = item => {
     axios.delete(`http://127.0.0.1:8000/api/todos/${item.id}`);
     let todoListCopy = this.state.todoList; // grab a copy of the todo list
@@ -76,7 +77,7 @@ class App extends Component {
     const item = {
       title: "",
       notes: "",
-      created_at: "",
+      due: "",
       completed: false,
     };
     this.setState({ activeItem: item, modal: !this.state.modal });
@@ -104,10 +105,12 @@ class App extends Component {
               className="list-group-item d-flex justify-content-between align-items-center"
             >
               <span>
-                {/* displaying place in front of eidt button */}
-                {item.title}
+                <i class="material-icons">schedule</i> {item.title}
+                <small className="text-muted d-block">due: {item.due}</small>
               </span>
+              <small className="text-muted d-block">{item.notes}</small>
               <span>
+                {/* <i class="material-icons">add</i> */}
                 <button
                   onClick={() => this.editItem(item)}
                   className="btn btn-secondary mr-2"
@@ -137,7 +140,7 @@ class App extends Component {
         {/* list all completed todos */}
         <div className="doneItems">
           <div>
-            <span className="">Done</span>
+            <span className="donehead">Congrats!Mission Completed!</span>
           </div>
           {doneItems.map(item => (
             <li
@@ -145,8 +148,7 @@ class App extends Component {
               className="list-group-item d-flex justify-content-between align-items-center"
             >
               <span className="completed-todo" title={item.notes}>
-                {/* displaying place in front of eidt button */}
-                {item.title}
+                <i class="material-icons">done_outline</i> {item.title}
               </span>
               <span>
                 <button

@@ -62,11 +62,11 @@ export default class CustomModal extends Component {
               />
             </FormGroup>
             <FormGroup>
-              <Label for="created_at">created_at</Label>
+              <Label for="due">due</Label>
               <Input
                 type="date"
-                name="created_at"
-                checked={this.state.activeItem.created_at}
+                name="due"
+                checked={this.state.activeItem.due}
                 onChange={this.handleChange}
               />
             </FormGroup>

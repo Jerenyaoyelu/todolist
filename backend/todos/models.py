@@ -3,7 +3,8 @@ from django.db import models
 class Todos(models.Model):
     title = models.CharField(max_length=100,blank=False)
     notes = models.CharField(max_length=1000, blank=True)
-    created_at = models.DateTimeField(auto_now_add=True)
+    #have to format the datetime, otherwise when the date was entered as an input, error will occur because of wrong format
+    due = models.DateTimeField(auto_now_add=False)
     completed = models.BooleanField(default=False)
 
 
