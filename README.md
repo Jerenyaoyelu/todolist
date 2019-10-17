@@ -23,15 +23,18 @@
 - Modify the deadline
   ![7](gifs/更改待办事项Deadline.gif)
 
-## Requirements
+## Run the application locally
 
-- follow the `SETUP.md`
+- `git clone https://github.com/Jerenyaoyelu/todolist.git`
+- Follow the `SETUP.md` to get the env ready
+- Open two terminals, enter to venv
+  - `cd` to `frontend` and run `npm start`
+  - `cd` to `backend` and run `python manage.py runserver`
 
 ## Techniques
 
 - frontend
   - React
-    > SPA
   - Bootstrap
 - backend
   - Django
@@ -39,9 +42,7 @@
   - psycopg2 -> adapter
 - communication
   - Django REST framework -> API
-    > Swagger for API look(optional)
   - CORS
-    > allows client applications to interface with APIs hosted on different domains
 - deployment
   - AWS ubuntu@EC2
 
