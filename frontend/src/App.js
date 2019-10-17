@@ -119,7 +119,7 @@ class App extends Component {
               <span>
                 <button
                   onClick={() => this.finalize(item)}
-                  className="btn btn-secondary mr-2"
+                  className="btn btn-success mr-2"
                 >
                   <i className="material-icons">check_circle_outline</i>
                 </button>
