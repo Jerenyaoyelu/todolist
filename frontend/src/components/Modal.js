@@ -21,9 +21,6 @@ export default class CustomModal extends Component {
   }
   handleChange = e => {
     let { name, value } = e.target;
-    if (e.target.type === "checkbox") {
-      value = e.target.checked;
-    }
     const activeItem = {
       ...this.state.activeItem,
       [name]: value,
@@ -67,15 +64,6 @@ export default class CustomModal extends Component {
                 type="date"
                 name="due"
                 checked={this.state.activeItem.due}
-                onChange={this.handleChange}
-              />
-            </FormGroup>
-            <FormGroup>
-              <Label for="completed">Completed</Label>
-              <Input
-                type="checkbox"
-                name="completed"
-                checked={this.state.activeItem.completed}
                 onChange={this.handleChange}
               />
             </FormGroup>

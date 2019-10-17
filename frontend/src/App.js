@@ -87,6 +87,13 @@ class App extends Component {
     this.setState({ activeItem: item, modal: !this.state.modal });
   };
 
+  finalize = item => {
+    item.completed = true;
+    // update state
+    this.setState({ activeItem: item });
+    //update db
+    axios.put(`http://127.0.0.1:8000/api/todos/${item.id}`, item);
+  };
   renderItems = () => {
     // const { viewCompleted } = this.state;
     const todoItems = this.state.todoList.filter(
@@ -105,23 +112,28 @@ class App extends Component {
               className="list-group-item d-flex justify-content-between align-items-center"
             >
               <span>
-                <i class="material-icons">schedule</i> {item.title}
+                <i className="material-icons">schedule</i> {item.title}
                 <small className="text-muted d-block">due: {item.due}</small>
               </span>
               <small className="text-muted d-block">{item.notes}</small>
               <span>
-                {/* <i class="material-icons">add</i> */}
+                <button
+                  onClick={() => this.finalize(item)}
+                  className="btn btn-secondary mr-2"
+                >
+                  <i className="material-icons">check_circle_outline</i>
+                </button>
                 <button
                   onClick={() => this.editItem(item)}
                   className="btn btn-secondary mr-2"
                 >
-                  Edit
+                  <i className="material-icons">create</i>
                 </button>
                 <button
                   onClick={e => this.handleDelete(item)}
                   className="btn btn-danger"
                 >
-                  Delete
+                  <i className="material-icons">delete</i>
                 </button>
               </span>
             </li>
@@ -148,14 +160,14 @@ class App extends Component {
               className="list-group-item d-flex justify-content-between align-items-center"
             >
               <span className="completed-todo" title={item.notes}>
-                <i class="material-icons">done_outline</i> {item.title}
+                <i className="material-icons">done_outline</i> {item.title}
               </span>
               <span>
                 <button
                   onClick={() => this.handleDelete(item)}
                   className="btn btn-danger"
                 >
-                  Delete
+                  <i className="material-icons">delete</i>
                 </button>
               </span>
             </li>
