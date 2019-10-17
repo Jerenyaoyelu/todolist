@@ -46,3 +46,5 @@
 - [Django and React Tutorial](https://www.youtube.com/watch?v=uZgRbnIsgrA)
 - [Axios in React — Bring Your Data to the Front](https://programmingwithmosh.com/javascript/axios-in-react-bring-your-data-to-the-front/)
 - [reactdj](http://srplabs.in/home)
+- [axios](https://github.com/axios/axios)
+- [React Icons Gets You Access to Hundreds of Open Source Icons](https://alligator.io/react/react-icons-open-source-icons/)
