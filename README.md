@@ -25,11 +25,7 @@
 
 ## Run the application locally
 
-- `git clone https://github.com/Jerenyaoyelu/todolist.git`
-- Follow the `SETUP.md` to get the env ready
-- Open two terminals, enter to venv
-  - `cd` to `frontend` and run `npm start`
-  - `cd` to `backend` and run `python manage.py runserver`
+- follow [`HowToRun.md`](./HowToRun.md)
 
 ## Techniques
 
@@ -43,8 +39,6 @@
 - communication
   - Django REST framework -> API
   - CORS
-- deployment
-  - AWS ubuntu@EC2
 
 ## Reference
 
