@@ -4,7 +4,6 @@
 
 - A task manage web application with React frontend and Django backend
 - Using Django REST framework api to achieve the communication between frontend and backend
-- Deployment is done on AWS EC2
 
 ## Completed all functions
 
